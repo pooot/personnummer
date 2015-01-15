@@ -1,0 +1,1 @@
+Helpers for dealing with swedish personal identity numbers (personnummer).
