@@ -51,7 +51,7 @@ class Personnummer
     private static function format($string)
     {
         if (!is_numeric($string) && !is_string($string)) {
-            throw new \InvalidArgumentException();
+            return false;
         }
 
         $regexp = '/^(\d{2}){0,1}(\d{2})(\d{2})(\d{2})([\-|\+]{0,1})?(\d{3})(\d{0,1})$/';
@@ -61,7 +61,7 @@ class Personnummer
         preg_match($regexp, $string, $match);
 
         if (!isset($match) || count($match) < 7) {
-            throw new \InvalidArgumentException();
+            return false;
         }
 
         return [
