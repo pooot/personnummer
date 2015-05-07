@@ -125,9 +125,16 @@ class Personnummer
         $array = self::format( $string );
 
         $dob = $array['year'] . $array['month'] . $array['day'];
-        $dt    = Carbon::createFromFormat( 'ymd', $dob, 'Europe/Stockholm' );
+
         $today = Carbon::now( 'Europe/Stockholm' );
 
+        if ($array['year'] > intval($today->format('y'))) {
+            $century = 19;
+        } else {
+            $century = 20;
+        }
+
+        $dt    = Carbon::createFromFormat( 'Ymd', $century . $dob, 'Europe/Stockholm' );
         $age = $dt->diffInYears( $today );
 
         return $age;
